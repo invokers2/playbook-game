@@ -1,0 +1,83 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+#container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    max-height: 400px;
+    margin-bottom: 24px;
+}
+
+.info {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+button {
+    height: 48px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 12px;
+    background-color: #1d4782;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: .3s background-color;
+}
+
+button:hover {
+    background-color: #173968;
+}
+
+button:disabled {
+    background-color: #9fa2a7;
+}
+
+#verificarBtn {
+    background-color: #1d8233;
+    border: 2px solid #1d8233;
+    margin-bottom: 24px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input label {
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.input input {
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid #9fa2a7;
+    border-radius: 12px;
+}
+
+.input:first-child {
+    margin-bottom: 16px;
+}
+
+.input:last-child {
+    margin-bottom: 24px;
+}

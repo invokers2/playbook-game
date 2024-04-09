@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Playbook game</h1>
+        <div id="imagemContainer"></div>
+        <div id="camposEntrada" class="oculto">
+            <div class="input">
+                <label for="numeroImagem">Número da jogada: </label>
+                <input type="number" id="numeroImagem" min="1" max="9">
+            </div>
+            <div class="input">
+                <label for="nomeImagem">Nome da jogada: </label>
+                <input type="text" id="nomeImagem">
+            </div>
+        </div>
+        <button id="verificarBtn" class="oculto">Verificar número e jogada</button>
+        <button id="sortearBtn">Sortear jogada</button>
+        <!-- O restante do seu HTML vem aqui -->        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
