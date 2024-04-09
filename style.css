@@ -81,3 +81,24 @@ button:disabled {
 .input:last-child {
     margin-bottom: 24px;
 }
+
+#contador {
+    justify-content: center;
+    align-items: center;
+    background-color: #D90A2C;
+    height: 64px;
+    width: 64px;
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: middle;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 800;
+    border-radius: 100%;
+    color: #fff;
+}
+
+video {
+    height: 500px;
+    margin-bottom: 24px;
+}

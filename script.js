@@ -3,28 +3,35 @@ let imagemSorteada = null; // Variável para armazenar a imagem sorteada
 document.getElementById('sortearBtn').addEventListener('click', function() {
     // Lista das imagens com nome e número
     const imagens = [
-        { arquivo: '1.png', nome: 'Inside Zone', numero: 1 },
-        { arquivo: '2.png', nome: 'Dart', numero: 2 },
-        { arquivo: '2a.png', nome: 'QB Dart', numero: 2 },
-        { arquivo: '3.png', nome: 'Stretch', numero: 3 },
-        { arquivo: '4.png', nome: 'Speed Option', numero: 4 },
-        { arquivo: '5.png', nome: 'Power Read', numero: 5 },
-        { arquivo: '6.png', nome: 'Counter GT', numero: 6 },
-        { arquivo: '6a.png', nome: 'QB Counter GT', numero: 6 },
-        { arquivo: '7.png', nome: 'Dive', numero: 7 },
-        { arquivo: '8.png', nome: 'Pull Center', numero: 8 },
-        { arquivo: '9.png', nome: 'Trap', numero: 9 }
+        { arquivo: 'inside.mp4', nome: 'Inside Zone', numero: 1 },
+        { arquivo: 'dart.mp4', nome: 'Dart', numero: 2 },
+        { arquivo: 'qb-dart.mp4', nome: 'QB Dart', numero: 2 },
+        { arquivo: 'stretch.mp4', nome: 'Stretch', numero: 3 },
+        { arquivo: 'speed.mp4', nome: 'Speed Option', numero: 4 },
+        { arquivo: 'power.mp4', nome: 'Power Read', numero: 5 },
+        { arquivo: 'counter-gt.mp4', nome: 'Counter GT', numero: 6 },
+        { arquivo: 'qb-counter.mp4', nome: 'QB Counter GT', numero: 6 },
+        { arquivo: 'dive.mp4', nome: 'Dive', numero: 7 },
+        { arquivo: 'center.mp4', nome: 'Pull Center', numero: 8 },
+        { arquivo: 'trap.mp4', nome: 'Trap', numero: 9 }
     ];
 
     const indiceAleatorio = Math.floor(Math.random() * imagens.length);
     imagemSorteada = imagens[indiceAleatorio];
-    const caminhoDaImagem = `imagens/${imagemSorteada.arquivo}`;
+    const caminhoDaImagem = `videos/${imagemSorteada.arquivo}`;
 
-    let imagemElement = document.querySelector('#imagemContainer img');
+    let imagemElement = document.querySelector('#imagemContainer video');
     if (!imagemElement) {
-        imagemElement = document.createElement('img');
+        imagemElement = document.createElement('video');
+
+        imagemElement.setAttribute('autoplay', '');
+        imagemElement.setAttribute('muted', '');
+        
         document.getElementById('imagemContainer').appendChild(imagemElement);
     }
+
+    imagemElement.muted = true;
+    
     imagemElement.src = caminhoDaImagem;
 
     // Remove a classe 'oculto' dos campos de entrada e do botão verificarBtn
@@ -39,7 +46,70 @@ document.getElementById('sortearBtn').addEventListener('click', function() {
 
     document.getElementById('camposEntrada').classList.remove('oculto');
     document.getElementById('verificarBtn').classList.remove('oculto');
+
+    // Certifique-se de que a imagem sorteada está visível
+    // Substitua 'imagemSorteada' pelo ID real do elemento da imagem
+    document.getElementById('imagemContainer').style.display = 'block';
+    
+    // Inicia o contador
+    let tempoRestante = 5;
+    document.getElementById('contador').innerHTML = tempoRestante;
+    document.getElementById('contador').style.display = 'flex';
+
+    // Oculta os campos de entrada imediatamente
+    document.getElementById('camposEntrada').style.display = 'none';
+    
+    // Oculta o botão verificarBtn imediatamente
+    document.getElementById('verificarBtn').style.display = 'none';
+
+    // Atualiza o contador a cada segundo
+    const intervalId = setInterval(function() {
+        tempoRestante -= 1;
+        document.getElementById('contador').innerHTML = tempoRestante;
+
+        if (tempoRestante <= 0) {
+            clearInterval(intervalId); // Para o contador
+            document.getElementById('contador').style.display = 'none'; // Oculta o contador
+            document.getElementById('imagemContainer').style.display = 'none'; // Oculta a imagem
+
+            function exibirCamposEAplicarFoco() {
+                // Supondo que camposEntrada seja o container que inclui numeroImagem e nomeImagem
+                const camposEntrada = document.getElementById('camposEntrada');
+                camposEntrada.style.display = 'block'; // Torna o container visível
+            
+                // Agora aplica o foco no campo numeroImagem
+                const campoNumero = document.getElementById('numeroImagem');
+                campoNumero.focus();
+            }
+
+            exibirCamposEAplicarFoco();
+
+            // Chama a função para pausar o vídeo
+            pausarVideo();
+
+            // Exibe os campos de entrada
+            document.getElementById('camposEntrada').style.display = 'block';
+            
+            // Exibe o botão verificarBtn
+            document.getElementById('verificarBtn').style.display = 'block';
+        }
+    }, 1000);
 });
+
+function exibirCamposEntradaEAplicarFoco() {
+    // Assume-se que os campos já estão visíveis, ou você os torna visíveis aqui
+    // Por exemplo, document.getElementById('camposEntrada').style.display = 'block';
+    
+    const campoNumero = document.getElementById('numeroImagem');
+    campoNumero.focus(); // Aplica foco no campo numeroImagem
+}
+
+function pausarVideo() {
+    const videoElement = document.querySelector('#imagemContainer video');
+    if (videoElement) {
+        videoElement.pause(); // Pausa o vídeo
+    }
+}
 
 // Adiciona o evento de clique ao botão verificarBtn para verificar a imagem
 document.getElementById('verificarBtn').addEventListener('click', verificarImagem);
@@ -49,12 +119,12 @@ function verificarImagem() {
     const nomeDigitado = document.getElementById('nomeImagem').value.trim().toLowerCase();
 
     if (imagemSorteada.numero === numeroDigitado && imagemSorteada.nome.toLowerCase() === nomeDigitado) {
-        alert("Parabéns! Você acertou a imagem.");
+        alert("Parabéns! Você acertou o número e o nome da jogada.");
 
         // Reabilita o botão sortearBtn
         document.getElementById('sortearBtn').disabled = false;
     } else {
-        alert("Que pena! Não é a imagem correta.");
+        alert("Que pena! Não é o número e o nome da jogada.");
     }
 }
 
@@ -78,4 +148,3 @@ document.getElementById('nomeImagem').addEventListener('keypress', function(even
 
 // Vincula o mesmo manipulador ao clique do botão verificarBtn
 document.getElementById('verificarBtn').addEventListener('click', handleVerification);
-
