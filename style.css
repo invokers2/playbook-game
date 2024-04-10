@@ -12,6 +12,11 @@ body, html {
     text-align: center;
     display: flex;
     flex-direction: column;
+    padding: 32px;
+}
+
+#imagemContainer {
+    max-width: 100%;
 }
 
 img {
@@ -99,6 +104,7 @@ button:disabled {
 }
 
 video {
-    height: 500px;
+    height: 400px;
     margin-bottom: 24px;
+    width: 100%;
 }
